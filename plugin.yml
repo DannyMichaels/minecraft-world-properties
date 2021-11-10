@@ -1,0 +1,9 @@
+main: com.daniel.worldproperties.Main
+name: WorldProperties
+description: testing minecraft world properties
+version: 1.0
+author: Daniel
+commands:
+  set_storm:
+  set_thunder:
+  set_time:
