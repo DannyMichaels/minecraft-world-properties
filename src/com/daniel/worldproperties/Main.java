@@ -26,47 +26,61 @@ public class Main extends JavaPlugin {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-		String cmdName = cmd.getName();
-		System.out.println("ARGS: " + args);
+		try {
 
-		switch (cmdName) {
+			String cmdName = cmd.getName();
+			System.out.println("args length: " + args.length);
 
-		case "set_storm":
-			if (args[1] != null) {
-				world.setStorm(args[1] == "true" ? true : false);
-			} else {
-				if (world.hasStorm()) {
-					world.setStorm(false);
+			if (args.length == 1) {
+				System.out.println("args[0] " + args[0]);
+			}
+
+			switch (cmdName) {
+
+			case "set_storm":
+				if (args[0] != null) {
+					world.setStorm(args[0] == "true" ? true : false);
 				} else {
-					world.setStorm(true);
+					if (world.hasStorm()) {
+						world.setStorm(false);
+					} else {
+						world.setStorm(true);
+					}
 				}
-			}
 
-			break;
+				sender.sendMessage(world.hasStorm() + "");
+				break;
 
-		case "set_thunder":
-			if (args[1] != null) {
-				world.setThundering(args[1] == "true" ? true : false);
-			} else {
-				if (world.isThundering()) {
-					world.setThundering(false);
+			case "set_thunder":
+				if (args[0] != null) {
+					world.setThundering(args[0] == "true" ? true : false);
 				} else {
-					world.setThundering(true);
+					if (world.isThundering()) {
+						world.setThundering(false);
+					} else {
+						world.setThundering(true);
+					}
 				}
-			}
-			break;
 
-		case "set_time":
-			if (args[1] != null) {
-				world.setTime(Integer.parseInt(args[1]));
+				sender.sendMessage(world.isThundering() + "");
+				break;
+
+			case "set_time":
+				if (args[0] != null) {
+					world.setTime(Integer.parseInt(args[0]));
+					sender.sendMessage("Time set to " + Integer.parseInt(args[0]));
+				}
+			case "spawn_location":
+				sender.sendMessage(world.getSpawnLocation() + "");
+				break;
+			default:
+				break;
 			}
 
-		case "spawn_location":
-			sender.sendMessage(world.getSpawnLocation() + "");
-		default:
-			break;
+			return false;
+		} catch (Error error) {
+			sender.sendMessage("there was an error running your command");
+			return false;
 		}
-
-		return false;
 	}
 }
