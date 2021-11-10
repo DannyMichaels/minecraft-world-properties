@@ -69,9 +69,4 @@ public class Main extends JavaPlugin {
 
 		return false;
 	}
-
-	@Override
-	public void onDisable() {
-
-	}
 }
