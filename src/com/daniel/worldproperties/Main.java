@@ -2,7 +2,6 @@ package com.daniel.worldproperties;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.block.Biome;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -39,7 +38,7 @@ public class Main extends JavaPlugin {
 
 			case "set_storm":
 				if (args[0] != null) {
-					world.setStorm(args[0] == "true" ? true : false);
+					world.setStorm(Boolean.parseBoolean(args[0])); // parse string to boolean
 				} else {
 					if (world.hasStorm()) {
 						world.setStorm(false);
