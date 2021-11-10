@@ -53,7 +53,7 @@ public class Main extends JavaPlugin {
 
 			case "set_thunder":
 				if (args[0] != null) {
-					world.setThundering(args[0] == "true" ? true : false);
+					world.setThundering(Boolean.parseBoolean(args[0])); // parse string to boolean
 				} else {
 					if (world.isThundering()) {
 						world.setThundering(false);
@@ -70,6 +70,7 @@ public class Main extends JavaPlugin {
 					world.setTime(Integer.parseInt(args[0]));
 					sender.sendMessage("Time set to " + Integer.parseInt(args[0]));
 				}
+				break;
 			case "spawn_location":
 				sender.sendMessage(world.getSpawnLocation() + "");
 				break;
